@@ -75,14 +75,11 @@ obs1<-obs[-(obs$ID==2016&obs$SAMPLENUMBER==201605),]
 #[1]  0  0  0  0  0  0  0  0  0  0  0 -1  0  0  0  0  0  0  0  
 ```
 **筛选列--根据列名**
- 
 1. base 的 subset
-
 ```markdown
 subset(airquality, select = Ozone:Wind)
 ```
 2. dylyr 包的 select
-
 ```markdown
 select(iris, starts_with("Petal"))
 select(iris, ends_with("Width"))
@@ -92,7 +89,6 @@ select(iris, Species, everything())
 #Drop variables with -
 select(iris, -starts_with("Petal"))
 ```
-
 3. 最基础的(通过列名，通过位置，通过判断)
 ```markdown
 doswt <- dos[,c("ID","samplemoment")]
@@ -137,17 +133,12 @@ recode(num_vec, `2` = 20L, `4` = 40L)
 ```
 
 ###排序
-
 1. 最基础的
-
 ```markdown
 dos <- dos[order(dos$ID, dos$samplemoment, -dos$EVID),]
 ```
-
-
 ###修改列的名字
 1. colnames（）
-
 ```markdown
 colnames(weight)[4] <- "WT"
 ```
@@ -179,7 +170,6 @@ x
 
 ```
 2. which () 这个返回的是对应的位置
-
 ```markdown
 x <- c(1,5,8,4,6)
 x
@@ -187,13 +177,10 @@ x
 which(x == 5)
 #[1] 2
 ```
-
 3. %in% 这个返回的T or F, 没找打返回的是F
-
 ```markdown
 5 %in% c(1,2,9,5,3,6,7,4,5)
 #[1] TRUE
-
 
 v1 <- c("a1","b2","c1","d2")
 v2 <- c("g1","x2","d2","e2","f1","a1","c2","b2","a2")
@@ -237,8 +224,7 @@ df.tot <- df.tot %>%
   ungroup()
 ```
 ###日期
-1. as. date
-把character 转化为 日期用as.date ，会丢失掉时间的信息
+1. as. date: 把character 转化为 日期用as.date ，会丢失掉时间的信息
 ```markdown
 head(harMet_15Min$datetime)
 
