@@ -18,7 +18,7 @@ vanco<-read.csv("Vancomycin_FINAL2.csv",skip=1)
 row.names==NULL. 通常情况下不用设置row.names也能使用默认排序列，若需用数据中的列排序则需 row.names==列名
 Using NULL for the value resets the row names to seq_len(nrow(x)), regarded as ‘automatic'
 
-## 筛选数据
+### 筛选数据
 **条件筛选行**
 1. base 里的subset()
 ```markdown
@@ -136,7 +136,7 @@ recode(num_vec, `2` = 20L, `4` = 40L)
 #> [1]  1 20  3 40 NA
 ```
 
-##排序
+###排序
 
 1. 最基础的
 
@@ -145,7 +145,7 @@ dos <- dos[order(dos$ID, dos$samplemoment, -dos$EVID),]
 ```
 
 
-##修改列的名字
+###修改列的名字
 1. colnames（）
 
 ```markdown
@@ -156,7 +156,7 @@ colnames(weight)[4] <- "WT"
 ```markdown
 rename(dataset, newname=oldname)
 ```
-##两个数据条件配对
+###两个数据条件配对
 1. match，这个返回的是位置，没找到就是NA
 ```markdown
 print(match(5, c(1,2,9,5,3,6,7,4,5)))
@@ -202,19 +202,19 @@ v1 %in% v2
 
 ```
 
-##替换字符串
+###替换字符串
 
 ```markdown
 gron$AMT <- gsub(",", ".", gron$AMT) 
 ```
 
-##去除重复列
+###去除重复列
 
 ```markdown
 df.PNA <- df.tot[!duplicated(df.tot$ID),] 
 ```
 
-##统计分析
+###统计分析
 **n() count**
 ```markdown
 if (require("nycflights13")) {
@@ -236,7 +236,7 @@ df.tot <- df.tot %>%
   mutate(Weight2 = na.approx(WT, TIMECALC, rule=2)) %>% 
   ungroup()
 ```
-##日期
+###日期
 1. as. date
 把character 转化为 日期用as.date ，会丢失掉时间的信息
 ```markdown
