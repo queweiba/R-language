@@ -40,9 +40,7 @@ grep("[a-z]", letters)
 grepl("[a-z]", letters)
 #[1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 ```
-
 2. dplyr包的filter()
-
 ```markdown
 filter(.data, ..., .preserve = FALSE)
 ```
@@ -59,22 +57,18 @@ filter(df, is.na(x) | x > 1)
 2     3
 ```
 3. 用dplyr 的 slice () 根据行的位置来选择
-
 ```markdown
 my_data <- as_tibble(iris)
 my_data
 my_data %>% slice(1:6)
 ```
-
 4. 最基础的
-
 ```markdown
 weight<-weight[weight$ID %in% idconc,] #用T or F 进行筛选
 my_data[c(1:3),]  #根据行的位置来选择
 ```
 注：
 #用 "-"去 删除T or F 是错误，要用！
-
 ```markdown
 obs1<-obs[-(obs$ID==2016&obs$SAMPLENUMBER==201605),]
 #因为会产生
