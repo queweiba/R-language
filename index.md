@@ -35,10 +35,10 @@ grep () 返回的是相应字母在一个序列里的位置
 
 ```markdown
 grep("[a-z]", letters)
-# [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
+#[1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
 
 grepl("[a-z]", letters)
-# [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+#[1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 ```
 
 2. dplyr包的filter()
@@ -52,7 +52,7 @@ filter(.data, ..., .preserve = FALSE)
 ```markdown
 df <- tibble(x = c(1, NA, 3))
 filter(df, is.na(x) | x > 1)
-# A tibble: 2 x 1
+#A tibble: 2 x 1
       x
   <dbl>
 1    NA
@@ -93,9 +93,9 @@ subset(airquality, select = Ozone:Wind)
 select(iris, starts_with("Petal"))
 select(iris, ends_with("Width"))
 
-# Move Species variable to the front
+#Move Species variable to the front
 select(iris, Species, everything())
-# Drop variables with -
+#Drop variables with -
 select(iris, -starts_with("Petal"))
 ```
 
@@ -125,18 +125,18 @@ char_vec <- sample(c("a", "b", "c"), 10, replace = TRUE)
 recode(char_vec, a = "Apple")
 #>  [1] "Apple" "b"     "Apple" "b"     "c"     "Apple" "c"     "c"     "b"    
 #> [10] "Apple"
-# Use .default as replacement for unmatched values
+#Use .default as replacement for unmatched values
 recode(char_vec, a = "Apple", b = "Banana", .default = NA_character_)
 #>  [1] "Apple"  "Banana" "Apple"  "Banana" NA       "Apple"  NA       NA      
 #>  [9] "Banana" "Apple" 
 
-# Use a named character vector for unquote splicing with !!!
+#Use a named character vector for unquote splicing with !!!
 level_key <- c(a = "apple", b = "banana", c = "carrot")
 recode(char_vec, !!!level_key)
 #>  [1] "apple"  "banana" "apple"  "banana" "carrot" "apple"  "carrot" "carrot"
 #>  [9] "banana" "apple" 
 
-# For numeric values, named arguments can also be used
+#For numeric values, named arguments can also be used
 num_vec <- c(1:4, NA)
 recode(num_vec, `2` = 20L, `4` = 40L)
 #> [1]  1 20  3 40 NA
@@ -173,7 +173,7 @@ v2 <- c("g1","x2","d2","e2","f1","a1","c2","b2","a2")
 x <- match(v1,v2)
 x
 v2[match(v1,v2)]
-# [1] 6 8 NA 3
+#[1] 6 8 NA 3
 #[1] "a1" "b2" NA   "d2"
 
 
@@ -191,7 +191,7 @@ x <- c(1,5,8,4,6)
 x
 #[1] 1 5 8 4 6
 which(x == 5)
-# [1] 2
+#[1] 2
 ```
 
 3. %in% 这个返回的T or F, 没找打返回的是F
@@ -248,8 +248,8 @@ df.tot <- df.tot %>%
 ```markdown
 head(harMet_15Min$datetime)
 
-## [1] "2005-01-01T00:15" "2005-01-01T00:30" "2005-01-01T00:45"
-## [4] "2005-01-01T01:00" "2005-01-01T01:15" "2005-01-01T01:30"
+#[1] "2005-01-01T00:15" "2005-01-01T00:30" "2005-01-01T00:45"
+#[4] "2005-01-01T01:00" "2005-01-01T01:15" "2005-01-01T01:30"
 
 # convert column to date class
 dateOnly_HARV <- as.Date(harMet_15Min$datetime)
@@ -257,55 +257,53 @@ dateOnly_HARV <- as.Date(harMet_15Min$datetime)
 # view data
 head(dateOnly_HARV)
 
-# [1] "2005-01-01" "2005-01-01" "2005-01-01" "2005-01-01" "2005-01-01"
-# [6] "2005-01-01"
+#[1] "2005-01-01" "2005-01-01" "2005-01-01" "2005-01-01" "2005-01-01"
+#[6] "2005-01-01"
 ```
 2. POSIXct
 as.POSIXct stores both a date and time with an associated time zone. The default time zone selected, is the time zone that your computer is set to which is most often your local time zone
 ```markdown
-# Convert character data to date and time.
+#Convert character data to date and time.
 timeDate <- as.POSIXct("2015-10-19 10:15")   
 str(timeDate) #变成POSIXct class
 
-#  POSIXct[1:1], format: "2015-10-19 10:15:00"
+#POSIXct[1:1], format: "2015-10-19 10:15:00"
 
 timeDate
 
-## [1] "2015-10-19 10:15:00 MDT"
+##[1] "2015-10-19 10:15:00 MDT"
 ```
 POSIXct stores date and time in seconds with the number of seconds beginning at 1 January 1970. Negative numbers are used to store dates prior to 1970.
 The unclass method in R allows you to view how a particular R object is stored.
 
 ```markdown
-# to see the data in this 'raw' format, i.e., not formatted according to the class type to show us a date we recognize, use the `unclass()` function.
+#to see the data in this 'raw' format, i.e., not formatted according to the class type to show us a date we recognize, use the `unclass()` function.
 unclass(timeDate)
 
-## [1] 1445271300
-## attr(,"tzone")
-## [1] "
+##[1] 1445271300
+##attr(,"tzone")
+##[1] "
 ```
 3. POSIXlt
 When we convert a string to POSIXlt, and view it in R, it still looks similar to the POSIXct format. However, unclass() shows us that the data are stored differently. The POSIXlt class stores the hour, minute, second, day, month, and year separately.
 
 ```markdown
-# Convert character data to POSIXlt date and time
+#Convert character data to POSIXlt date and time
 timeDatelt<- as.POSIXlt("2015-10-19 10:15")  
 str(timeDatelt)
 
-##  POSIXlt[1:1], format: "2015-10-19 10:15:00"
+##POSIXlt[1:1], format: "2015-10-19 10:15:00"
 
 timeDatelt
 
-## [1] "2015-10-19 10:15:00 MDT"
+##[1] "2015-10-19 10:15:00 MDT"
 
 unclass(timeDatelt)
 
-## $sec
-## [1] 0
-## 
-## $min
-## [1] 15
-## 
+##$sec
+##[1] 0
+##$min
+##[1] 15
 ## $hour
 ## [1] 10
 ## 
