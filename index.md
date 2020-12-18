@@ -1,15 +1,13 @@
-## Welcome to GitHub Pages
+## R commonly used code
 
-You can use the [editor on GitHub](https://github.com/queweiba/R-language/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+### 读取数据
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+将数据里的特定字符转化为NA
 
 ```markdown
-Syntax highlighted code block
+vanco<-read.csv("Vancomycin_FINAL2.csv",na.strings=".")
 
 # Header 1
 ## Header 2
