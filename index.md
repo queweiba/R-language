@@ -16,6 +16,7 @@ vanco<-read.csv("Vancomycin_FINAL2.csv",skip=1)
 ```
 4. 设置列名
 row.names==NULL. 通常情况下不用设置row.names也能使用默认排序列，若需用数据中的列排序则需 row.names==列名
+
 Using NULL for the value resets the row names to seq_len(nrow(x)), regarded as ‘automatic'
 
 ### 筛选数据
@@ -45,6 +46,7 @@ grepl("[a-z]", letters)
 filter(.data, ..., .preserve = FALSE)
 ```
 注意：filter的筛选命令生效是在条件（condition，有点类似于循环语句）为「TRUE」的情况下才能进行，往往并不包括「NA」值和「FALSE」条件；
+
 因此，如果筛选缺失值，不能直接使用比较运算符，只能通过R中的内置缺失值判断函数来进行「TRUE的操作」，比如：is.na(x)
 
 ```markdown
@@ -224,7 +226,8 @@ df.tot <- df.tot %>%
   ungroup()
 ```
 ###日期
-1. as. date: 把character 转化为 日期用as.date ，会丢失掉时间的信息
+1. as. date
+把character 转化为 日期用as.date ，会丢失掉时间的信息
 ```markdown
 head(harMet_15Min$datetime)
 
@@ -265,7 +268,8 @@ unclass(timeDate)
 ##[1] "
 ```
 3. POSIXlt
-When we convert a string to POSIXlt, and view it in R, it still looks similar to the POSIXct format. However, unclass() shows us that the data are stored differently. The POSIXlt class stores the hour, minute, second, day, month, and year separately.
+When we convert a string to POSIXlt, and view it in R, it still looks similar to the POSIXct format. However, unclass() shows us that the data are stored differently. 
+The POSIXlt class stores the hour, minute, second, day, month, and year separately.
 
 ```markdown
 #Convert character data to POSIXlt date and time
