@@ -21,7 +21,7 @@ Using NULL for the value resets the row names to seq_len(nrow(x)), regarded as �
 ## 筛选数据
 **条件筛选行**
 1. base 里的subset()
-```
+```markdown
 subset(x, subset, select, drop = FALSE, ...)
 #正常情况下选择的条件是T or F
 subset(airquality, Temp > 80, select = c(Ozone, Temp))
@@ -29,10 +29,10 @@ subset(airquality, Temp > 80, select = c(Ozone, Temp))
 nm <- rownames(state.x77)
 subset(state.x77, grepl("^M", nm), Illiteracy:Murder)
 ```
-注; 
+注:
 grepl () --返回具有相应字母的在一个序列里的T or F
 grep () 返回的是相应字母在一个序列里的位置
-```
+```markdown
 grep("[a-z]", letters)
 # [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
 
@@ -42,13 +42,13 @@ grepl("[a-z]", letters)
 
 2. dplyr包的filter()
 
-```
+```markdown
 filter(.data, ..., .preserve = FALSE)
 ```
 注意：filter的筛选命令生效是在条件（condition，有点类似于循环语句）为「TRUE」的情况下才能进行，往往并不包括「NA」值和「FALSE」条件；
 因此，如果筛选缺失值，不能直接使用比较运算符，只能通过R中的内置缺失值判断函数来进行「TRUE的操作」，比如：is.na(x)
 
-```
+```markdown
 df <- tibble(x = c(1, NA, 3))
 filter(df, is.na(x) | x > 1)
 # A tibble: 2 x 1
@@ -59,7 +59,7 @@ filter(df, is.na(x) | x > 1)
 ```
 3. 用dplyr 的 slice () 根据行的位置来选择
 
-```
+```markdown
 my_data <- as_tibble(iris)
 my_data
 my_data %>% slice(1:6)
@@ -67,14 +67,14 @@ my_data %>% slice(1:6)
 
 4. 最基础的
 
-```
+```markdown
 weight<-weight[weight$ID %in% idconc,] #用T or F 进行筛选
 my_data[c(1:3),]  #根据行的位置来选择
 ```
 注：
 #用 "-"去 删除T or F 是错误，要用！
 
-```
+```markdown
 obs1<-obs[-(obs$ID==2016&obs$SAMPLENUMBER==201605),]
 #因为会产生
 #[1]  0  0  0  0  0  0  0  0  0  0  0 -1  0  0  0  0  0  0  0  
@@ -83,12 +83,12 @@ obs1<-obs[-(obs$ID==2016&obs$SAMPLENUMBER==201605),]
  
 1. base 的 subset
 
-```
+```markdown
 subset(airquality, select = Ozone:Wind)
 ```
 2. dylyr 包的 select
 
-```
+```markdown
 select(iris, starts_with("Petal"))
 select(iris, ends_with("Width"))
 
@@ -99,27 +99,27 @@ select(iris, -starts_with("Petal"))
 ```
 
 3. 最基础的(通过列名，通过位置，通过判断)
-```
+```markdown
 doswt <- dos[,c("ID","samplemoment")]
 char<-char[,-grep("birthdate|DOB|time",colnames(char))] #grep 返回的也是位置
 dataly[ , -which(colnames(dataly) %in% c("b","d"))]  #which 返回的是位置而不是判断
 ```
 ##条件替换
 1. ifelse() 
-```
+```markdown
 gsample$Continent <- with(gsample, ifelse(MAKE=='HOLDEN', 'AUS', Continent))
 ```
 2. 基础的
-```
+```markdown
 gsample$Continent[gsample$MAKE=='HOLDEN'] <- 'AUS'
 ```
 3. plyr 的 revalue()
-```
+```markdown
 library(plyr)
 junk$nm <- revalue(junk$nm, c("B"="b"))
 ```
 4. dplyr 的 recode()
-```
+```markdown
 char_vec <- sample(c("a", "b", "c"), 10, replace = TRUE)
 recode(char_vec, a = "Apple")
 #>  [1] "Apple" "b"     "Apple" "b"     "c"     "Apple" "c"     "c"     "b"    
@@ -145,7 +145,7 @@ recode(num_vec, `2` = 20L, `4` = 40L)
 
 1. 最基础的
 
-```
+```markdown
 dos <- dos[order(dos$ID, dos$samplemoment, -dos$EVID),]
 ```
 
@@ -153,17 +153,17 @@ dos <- dos[order(dos$ID, dos$samplemoment, -dos$EVID),]
 ##修改列的名字
 1. colnames（）
 
-```
+```markdown
 colnames(weight)[4] <- "WT"
 ```
 2. dplyr 包里的rename ()
 
-```
+```markdown
 rename(dataset, newname=oldname)
 ```
 ##两个数据条件配对
 1. match，这个返回的是位置，没找到就是NA
-```
+```markdown
 print(match(5, c(1,2,9,5,3,6,7,4,5)))
 #[1] 4
 
@@ -185,7 +185,7 @@ x
 ```
 2. which () 这个返回的是对应的位置
 
-```bash
+```markdown
 x <- c(1,5,8,4,6)
 x
 #[1] 1 5 8 4 6
@@ -195,7 +195,7 @@ which(x == 5)
 
 3. %in% 这个返回的T or F, 没找打返回的是F
 
-```
+```markdown
 5 %in% c(1,2,9,5,3,6,7,4,5)
 #[1] TRUE
 
@@ -209,13 +209,13 @@ v1 %in% v2
 
 ##替换字符串
 
-```
+```markdown
 gron$AMT <- gsub(",", ".", gron$AMT) 
 ```
 
 ##去除重复列
 
-```
+```markdown
 df.PNA <- df.tot[!duplicated(df.tot$ID),] 
 ```
 
