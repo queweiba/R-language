@@ -221,7 +221,7 @@ df.PNA <- df.tot[!duplicated(df.tot$ID),]
 
 ##统计分析
 **n() count**
-```
+```markdown
 if (require("nycflights13")) {
 carriers <- group_by(flights, carrier)
 summarise(carriers, n())
@@ -235,7 +235,7 @@ filter(carriers, n() < 100)
  - if it is 2, the value at the closest data extreme is used.
  - Use, e.g., rule = 2:1, if the left and right side extrapolation should differ.
 
-```
+```markdown
 df.tot <- df.tot %>% 
   group_by(ID) %>% 
   mutate(Weight2 = na.approx(WT, TIMECALC, rule=2)) %>% 
@@ -244,7 +244,7 @@ df.tot <- df.tot %>%
 ##日期
 1. as. date
 把character 转化为 日期用as.date ，会丢失掉时间的信息
-```
+```markdown
 head(harMet_15Min$datetime)
 
 ## [1] "2005-01-01T00:15" "2005-01-01T00:30" "2005-01-01T00:45"
@@ -261,7 +261,7 @@ head(dateOnly_HARV)
 ```
 2. POSIXct
 as.POSIXct stores both a date and time with an associated time zone. The default time zone selected, is the time zone that your computer is set to which is most often your local time zone
-```
+```markdown
 # Convert character data to date and time.
 timeDate <- as.POSIXct("2015-10-19 10:15")   
 str(timeDate) #变成POSIXct class
@@ -275,7 +275,7 @@ timeDate
 POSIXct stores date and time in seconds with the number of seconds beginning at 1 January 1970. Negative numbers are used to store dates prior to 1970.
 The unclass method in R allows you to view how a particular R object is stored.
 
-```
+```markdown
 # to see the data in this 'raw' format, i.e., not formatted according to the class type to show us a date we recognize, use the `unclass()` function.
 unclass(timeDate)
 
@@ -286,7 +286,7 @@ unclass(timeDate)
 3. POSIXlt
 When we convert a string to POSIXlt, and view it in R, it still looks similar to the POSIXct format. However, unclass() shows us that the data are stored differently. The POSIXlt class stores the hour, minute, second, day, month, and year separately.
 
-```c
+```markdown
 # Convert character data to POSIXlt date and time
 timeDatelt<- as.POSIXlt("2015-10-19 10:15")  
 str(timeDatelt)
@@ -340,6 +340,6 @@ nrow(dataset) 列的数目
 substring 选择截取字符
 #make order
 
-```
+```markdown
 df.tot$order <- ave(row.names(df.tot), df.tot$ID, FUN = seq_along) 
 ```
