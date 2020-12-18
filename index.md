@@ -29,8 +29,6 @@ subset(airquality, Temp > 80, select = c(Ozone, Temp))
 nm <- rownames(state.x77)
 subset(state.x77, grepl("^M", nm), Illiteracy:Murder)
 ```
-
-
 注; 
 grepl () --返回具有相应字母的在一个序列里的T or F
 grep () 返回的是相应字母在一个序列里的位置
@@ -42,7 +40,7 @@ grepl("[a-z]", letters)
 # [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 ```
 
- 2. dplyr包的filter()
+2. dplyr包的filter()
 
 ```
 filter(.data, ..., .preserve = FALSE)
@@ -83,8 +81,7 @@ obs1<-obs[-(obs$ID==2016&obs$SAMPLENUMBER==201605),]
 ```
 **筛选列--根据列名**
  
-
- 1. base 的 subset
+1. base 的 subset
 
 ```
 subset(airquality, select = Ozone:Wind)
@@ -101,18 +98,18 @@ select(iris, Species, everything())
 select(iris, -starts_with("Petal"))
 ```
 
- 3. 最基础的(通过列名，通过位置，通过判断)
+3. 最基础的(通过列名，通过位置，通过判断)
 ```
 doswt <- dos[,c("ID","samplemoment")]
 char<-char[,-grep("birthdate|DOB|time",colnames(char))] #grep 返回的也是位置
 dataly[ , -which(colnames(dataly) %in% c("b","d"))]  #which 返回的是位置而不是判断
 ```
-**条件替换**
- 1. ifelse() 
+##条件替换
+1. ifelse() 
 ```
 gsample$Continent <- with(gsample, ifelse(MAKE=='HOLDEN', 'AUS', Continent))
 ```
- 2. 基础的
+2. 基础的
 ```
 gsample$Continent[gsample$MAKE=='HOLDEN'] <- 'AUS'
 ```
@@ -121,8 +118,7 @@ gsample$Continent[gsample$MAKE=='HOLDEN'] <- 'AUS'
 library(plyr)
 junk$nm <- revalue(junk$nm, c("B"="b"))
 ```
-
- 4. dplyr 的 recode()
+4. dplyr 的 recode()
 ```
 char_vec <- sample(c("a", "b", "c"), 10, replace = TRUE)
 recode(char_vec, a = "Apple")
@@ -145,16 +141,16 @@ recode(num_vec, `2` = 20L, `4` = 40L)
 #> [1]  1 20  3 40 NA
 ```
 
-**排序**
+##排序
 
- 1. 最基础的
+1. 最基础的
 
 ```
 dos <- dos[order(dos$ID, dos$samplemoment, -dos$EVID),]
 ```
 
 
-**修改列的名字**
+##修改列的名字
 1. colnames（）
 
 ```
@@ -165,7 +161,7 @@ colnames(weight)[4] <- "WT"
 ```
 rename(dataset, newname=oldname)
 ```
-**两个数据条件配对**
+##两个数据条件配对
 1. match，这个返回的是位置，没找到就是NA
 ```
 print(match(5, c(1,2,9,5,3,6,7,4,5)))
@@ -211,22 +207,20 @@ v1 %in% v2
 
 ```
 
-
-
-**替换字符串**
+##替换字符串
 
 ```
 gron$AMT <- gsub(",", ".", gron$AMT) 
 ```
 
-**去除重复列**
+##去除重复列
 
 ```
 df.PNA <- df.tot[!duplicated(df.tot$ID),] 
 ```
 
-**统计分析**
-n() count
+##统计分析
+**n() count**
 ```
 if (require("nycflights13")) {
 carriers <- group_by(flights, carrier)
@@ -235,7 +229,7 @@ mutate(carriers, n = n())
 filter(carriers, n() < 100)
 ```
 **Interpolation**
- 1. na.approx
+1. na.approx
  an integer (of length 1 or 2) describing how interpolation is to take place outside the interval [min(x), max(x)].
  - If rule is 1 then NAs are returned for such points
  - if it is 2, the value at the closest data extreme is used.
@@ -247,7 +241,7 @@ df.tot <- df.tot %>%
   mutate(Weight2 = na.approx(WT, TIMECALC, rule=2)) %>% 
   ungroup()
 ```
-  **日期**
+##日期
 1. as. date
 把character 转化为 日期用as.date ，会丢失掉时间的信息
 ```
@@ -262,8 +256,8 @@ dateOnly_HARV <- as.Date(harMet_15Min$datetime)
 # view data
 head(dateOnly_HARV)
 
-## [1] "2005-01-01" "2005-01-01" "2005-01-01" "2005-01-01" "2005-01-01"
-## [6] "2005-01-01"
+# [1] "2005-01-01" "2005-01-01" "2005-01-01" "2005-01-01" "2005-01-01"
+# [6] "2005-01-01"
 ```
 2. POSIXct
 as.POSIXct stores both a date and time with an associated time zone. The default time zone selected, is the time zone that your computer is set to which is most often your local time zone
@@ -272,7 +266,7 @@ as.POSIXct stores both a date and time with an associated time zone. The default
 timeDate <- as.POSIXct("2015-10-19 10:15")   
 str(timeDate) #变成POSIXct class
 
-##  POSIXct[1:1], format: "2015-10-19 10:15:00"
+#  POSIXct[1:1], format: "2015-10-19 10:15:00"
 
 timeDate
 
@@ -339,7 +333,7 @@ unclass(timeDatelt)
 ## [1] NA
 ```
 
-**其它**
+##其它
 去除factor——unfactor
 对号入座的
 nrow(dataset) 列的数目
